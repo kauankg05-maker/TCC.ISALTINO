@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>PetUrgencia</title>
+  <link rel="stylesheet" href="2style.css">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard-screen" class="screen">
+    <header>
+      <h1>PetUrgencia</h1>
+      <div class="header-btns">
+        <button class="urgencia-btn" onclick="mostrarUrgencia()">URGENCIA</button>
+        <button onclick="mostrarFormPet()">+ Pet</button>
+        <button onclick="logout()">Sair</button>
+      </div>
+    </header>
+
+    <div id="alertas"></div>
+    <div id="lista-pets" class="pets-grid"></div>
+  </div>
+
+  <!-- FORM PET -->
+  <div id="form-pet-screen" class="screen hidden">
+    <header>
+      <h1>Cadastrar Pet</h1>
+      <button onclick="voltarDashboard()">Voltar</button>
+    </header>
+
+    <div class="card form">
+      <button class="qr-btn" onclick="iniciarScanner()">Ler QR Code</button>
+      <div id="qr-reader" style="display:none; width:100%; max-width:400px; margin:0 auto 1rem;"></div>
+      <button id="btn-parar" class="qr-btn stop" style="display:none;" onclick="pararScanner()">
+        Parar camera
+      </button>
+
+      <input id="nome" placeholder="Nome do pet">
+      <input id="especie" placeholder="Especie (cao, gato...)">
+      <input id="raca" placeholder="Raca">
+      <input id="idade" placeholder="Idade">
+      <select id="sexo">
+        <option value="">Sexo</option>
+        <option>Macho</option>
+        <option>Femea</option>
+      </select>
+      <input id="documento" placeholder="Numero do documento">
+      <input id="alergias" placeholder="Alergias">
+      <input id="alimentacao" placeholder="Alimentacao">
+      <textarea id="rotina" placeholder="Rotina" rows="3"></textarea>
+      <label>Proxima consulta</label>
+      <input type="date" id="proximaConsulta">
+      <button onclick="salvarPet()">Salvar Pet</button>
+    </div>
+  </div>
+
+  <!-- URGENCIA -->
+  <div id="urgencia-screen" class="screen hidden">
+    <header>
+      <h1>Urgencia</h1>
+      <button onclick="voltarDashboard()">Voltar</button>
+    </header>
+
+    <div class="urgencia-area">
+      <button class="big-urgencia" onclick="buscarVets()">
+        Encontrar veterinario mais proximo
+      </button>
+      <p id="status-geo">Aguardando localizacao...</p>
+    </div>
+
+    <div class="colunas">
+      <div>
+        <h2>Gratuitos / ONGs</h2>
+        <div id="lista-gratis"></div>
+      </div>
+      <div>
+        <h2>Particulares</h2>
+        <div id="lista-pagos"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="utils.js"></script>
+  <script src="login2.js"></script>
+</body>
+</html>
